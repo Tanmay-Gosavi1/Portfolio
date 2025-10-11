@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
   const resumeDownload = async () => {
     try {
-      window.open('http://localhost:5000/api/download' , '_blank')
+      window.open('https://portfolio-backend-lvoz.onrender.com/api/download' , '_blank')
       toast.success("Thank you for downloading resume!");
       
     } catch (error) {
