@@ -1,5 +1,6 @@
 import React from 'react'
 import { MdArrowOutward } from "react-icons/md";
+import bankImg from '../assets/bank.jpg'
 
 const Projects = () => {
   return (
@@ -13,7 +14,7 @@ const Projects = () => {
                 <div className='flex flex-col lg:hidden items-center'>
                     {/* Left */}
                     <div className='w-full sm:w-[85%] md:w-[70%] relative group cursor-pointer '>
-                        <img className='h-full w-full object-cover rounded-xl' src="https://i.pinimg.com/1200x/9e/bc/a3/9ebca31d0d623bac60478fd6b3c96b0a.jpg" alt="" />
+                        <img className='h-full w-full object-cover rounded-xl' src={bankImg} alt="" />
                         <div className='hidden absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] group-hover:flex justify-center items-center h-25 w-25 border-3 border-white bg-black/50 rounded-full'>
                             <div>
                                 <MdArrowOutward size={40} color='white'/>
@@ -47,7 +48,7 @@ const Projects = () => {
                     </div>
                     {/* Right */}
                     <div className='w-[50%] relative group cursor-pointer transition-all duration-300'>
-                        <img className='h-full w-full object-contain rounded-xl' src="https://i.pinimg.com/1200x/9e/bc/a3/9ebca31d0d623bac60478fd6b3c96b0a.jpg" alt="" />
+                        <img className='h-full w-full object-contain rounded-xl' src={bankImg} alt="" />
                         <div className='hidden transition-all duration-300 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] group-hover:flex justify-center items-center h-25 w-25 border-3 border-white bg-black/50 rounded-full'>
                             <div>
                                 <MdArrowOutward className='transition-all duration-300' size={40} color='white'/>

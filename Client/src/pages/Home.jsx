@@ -6,6 +6,7 @@ import Techstack from '../components/Techstack';
 import Faqs from '../components/Faqs';
 import Reviews from '../components/Reviews';
 import Footer from '../components/Footer.jsx'
+import header_img from '../assets/bestAvatar.jpg'
 
 
 const Home = () => {
@@ -22,7 +23,7 @@ const Home = () => {
 
             {/* Image div */}
             <div className='h-full w-[92%] sm:w-[80%] md:w-[40%] lg:w-[26%] rounded-3xl overflow-hidden relative shadow-black shadow-xl/20'>
-              <img className='h-full w-full object-cover'src="https://img.freepik.com/premium-photo/3d-avatar-cartoon-character_113255-94578.jpg" alt="header_img" />
+              <img className='h-full w-full object-cover'src={header_img} alt="header_img" />
               <div className='absolute left-[50%] bottom-3 translate-x-[-50%]  hover:scale-105 transition-all delay-150'>
                 <Link to={'/form'} className='shadow-black shadow-xl/20 w-full transition-colors delay-50 whitespace-nowrap flex justify-center items-center hover:cursor-pointer gap-1.5 px-8 py-3 bg-[#fefefe] text-black hover:text-[#fefefe] hover:bg-black/90 font-semibold rounded-full border-2 border-black/20 hover:border-white'>Let's Talk<span className='font-extrabold'><MdArrowOutward size={20}  /></span></Link>
               </div>
