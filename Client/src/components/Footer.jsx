@@ -50,7 +50,7 @@ const Footer = () => {
                 {phoneNo} 
                 <div className='cursor-pointer absolute right-4 bottom-[50%] translate-y-[50%]'><TbClipboardCopy size={20}  /></div>
             </div>
-            <div className='w-full flex font-medium justify-center items-center py-3 bg-[#f6f4f4] rounded-2xl hover:bg-[#f0eeee]'>LinkedIn</div>
+            <a href='https://linkedin.com/in/tanmay-gosavi-a42368324' target='_blank' className='w-full flex font-medium justify-center items-center py-3 bg-[#f6f4f4] rounded-2xl hover:bg-[#f0eeee]'>LinkedIn</a >
         </div>
     </div>
   )
