@@ -4,38 +4,38 @@ import { IoIosArrowUp } from "react-icons/io";
 
 
 const Faqs = () => {
-    const faqData = [
-  {
-    "question": "What information do you need to get started?",
-    "answer": "To begin, I’ll need a clear understanding of your goals, target audience, brand guidelines (if available), and any specific features or design preferences you have in mind. I’ll guide you through the details during our initial consultation.",
-    "open" : false
-  },
-  {
-    "question": "What do you charge for your services?",
-    "answer": "My pricing varies depending on the project’s scope, complexity, and requirements. After discussing your goals and deliverables, I’ll provide a detailed quote tailored to your needs.",
-    "open" : false
-  },
-  {
-    "question": "Can you work within our brand guidelines?",
-    "answer": "Absolutely! I can seamlessly integrate your existing brand guidelines to ensure consistency across your designs and digital presence.",
-    "open" : false
-  },
-  {
-    "question": "Do you offer ongoing support after project completion?",
-    "answer": "Yes, I offer post-project support and maintenance to help with updates, troubleshooting, or further improvements as needed.",
-    "open" : false
-  },
-  {
-    "question": "How do we get started?",
-    "answer": "Simply reach out through my contact form or email to schedule an initial consultation. We’ll discuss your goals, project timeline, and next steps.",
-    "open" : false
-  },
-  {
-    "question": "Are there any tutorials available for new users of Forerunner™?",
-    "answer": "Yes, Forerunner™ provides a variety of tutorials and guides to help new users get started quickly and effectively.",
-    "open" : false
-  }
-]
+  const faqData = [
+    {
+      "question": "What information do you need to start a project?",
+      "answer": "To get started, I’ll need details about your project goals, target users, preferred tech stack (if any), design inspirations, and the key features you want. Don’t worry — I’ll guide you through everything during our initial discussion.",
+      "open": false
+    },
+    {
+      "question": "How do you structure your project pricing?",
+      "answer": "My pricing depends on factors like project size, complexity, required technologies, and timelines. Once I understand your needs, I’ll provide a transparent and customized quote.",
+      "open": false
+    },
+    {
+      "question": "What technologies do you specialize in?",
+      "answer": "I work with the MERN stack (MongoDB, Express, React, Node.js) along with tools like Next.js, Tailwind CSS, and RESTful or GraphQL APIs. I’m also familiar with databases, authentication systems, and deployment on cloud platforms.",
+      "open": false
+    },
+    {
+      "question": "Do you provide ongoing maintenance or updates?",
+      "answer": "Yes, I offer post-deployment support and maintenance. This includes bug fixes, updates, performance optimization, and adding new features as your project grows.",
+      "open": false
+    },
+    {
+      "question": "Can you integrate third-party APIs or services?",
+      "answer": "Absolutely! I can integrate APIs such as payment gateways, email services, authentication systems, and analytics tools to enhance your application’s functionality.",
+      "open": false
+    },
+    {
+      "question": "How can we start working together?",
+      "answer": "You can reach out via my contact form or email. Once we connect, we’ll discuss your goals, define the project scope, and plan the next steps to get started.",
+      "open": false
+    }
+  ]
 const [faq, setFaq] = useState(faqData);
 
   return (
