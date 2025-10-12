@@ -11,7 +11,7 @@ dotenv.config();
 const PORT = process.env.PORT || 3000;
 
 const corsOptions = {
-  origin : 'http://localhost:5173',
+  origin : 'https://portfolio-9913.onrender.com',
   methods : ['GET','POST','PUT','DELETE'],
   allowedHeaders : ['Content-Type','Authorization']
 }
