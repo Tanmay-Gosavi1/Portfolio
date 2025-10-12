@@ -85,9 +85,9 @@ const Form = () => {
                         <label className='mb-2 font-medium text-[#565658]' htmlFor="message">Message</label>
                         <textarea {...register('message')} className='outline-none p-2 rounded-md bg-[#f6f4f4]' id="message" rows="4" name="message" placeholder='Type your message' required></textarea>
                     </div>
-                    <button className='flex gap-5 mt-5 md:mt-10 px-2 py-2 w-fit rounded-full bg-black text-white font-semibold cursor-pointer hover:scale-102'>
+                    <button type="submit" className='flex gap-5 mt-5 md:mt-10 px-2 py-2 w-fit rounded-full bg-black text-white font-semibold cursor-pointer hover:scale-102'>
                         <div className='h-9 w-9 rounded-full flex justify-center items-center bg-white'><FaArrowRightLong size={20} color='black' /></div>
-                        <span className='pr-3 cursor-pointer flex justify-center items-center' type="submit">Submit</span>
+                        <span className='pr-3 cursor-pointer flex justify-center items-center'>Submit</span>
                     </button>
                 </form>
             </div>
