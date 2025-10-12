@@ -11,9 +11,10 @@ dotenv.config();
 const PORT = process.env.PORT || 3000;
 
 const corsOptions = {
-  origin : 'https://portfolio-9913.onrender.com',
+  origin : ['https://portfolio-9913.onrender.com', 'http://localhost:5173'],
   methods : ['GET','POST','PUT','DELETE'],
-  allowedHeaders : ['Content-Type','Authorization']
+  allowedHeaders : ['Content-Type','Authorization'],
+  credentials: true
 }
 
 app.use(cors(corsOptions));
