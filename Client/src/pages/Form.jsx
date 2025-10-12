@@ -13,10 +13,29 @@ const Form = () => {
 
     const submitEvent = async (data)=>{
         try {
+            console.log('Submitting form data:', data);
             const { name , email , message } = data;
-            const res = await axios.post('https://portfolio-backend-lvoz.onrender.com/api/contact' , { name , email , message });
-            console.log(res);
-            if(res.status === 200){
+            
+            // Check if all fields are filled
+            if (!name || !email || !message) {
+                toast.error("Please fill in all fields");
+                return;
+            }
+            
+            // For development, use localhost. For production, use your backend URL
+            const API_URL = window.location.hostname === 'localhost' 
+                ? 'http://localhost:5000/api/contact'
+                : 'https://portfolio-backend-lvoz.onrender.com/api/contact';
+                
+            console.log('Using API URL:', API_URL);
+            const res = await axios.post(API_URL, { name, email, message }, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            console.log('Response:', res);
+            
+            if(res.status === 200 || res.status === 201){
                 toast.success("Thank you for contacting me!");
                 reset();
             }else{
@@ -25,7 +44,19 @@ const Form = () => {
             
         } catch (error) {
             console.error("Error sending message:", error);
-            toast.error("Failed to send message.");
+            if (error.response) {
+                // Server responded with error
+                console.error('Server error:', error.response.data);
+                const errorMessage = error.response.data?.message || 'Server error occurred';
+                toast.error(errorMessage);
+            } else if (error.request) {
+                // Network error
+                console.error('Network error:', error.request);
+                toast.error("Network error. Please check your connection.");
+            } else {
+                // Other error
+                toast.error("Failed to send message.");
+            }
         }
     }
 
@@ -72,18 +103,24 @@ const Form = () => {
 
             {/* Form */}
             <div className='w-full md:w-[50%] lg:w-[40%] p-5 md:p-10 border-2 border-black/10 shadow-xl rounded-xl bg-white'>
-                <form action="" onSubmit={handleSubmit(submitEvent)}>
+                <form onSubmit={handleSubmit(submitEvent)}>
                     <div className='flex flex-col mb-4'>
                         <label className='mb-2 font-medium text-[#565658]' htmlFor="name">Name</label>
-                        <input {...register("name")} className='outline-none p-2 rounded-md bg-[#f6f4f4]' type="text" id="name" name="name" placeholder='Enter your name' required />
+                        <input {...register("name", { required: "Name is required" })} className='outline-none p-2 rounded-md bg-[#f6f4f4]' type="text" id="name" name="name" placeholder='Enter your name' />
                     </div>
                     <div className='flex flex-col mb-4'>
                         <label className='mb-2 font-medium text-[#565658]' htmlFor="email">Email</label>
-                        <input {...register('email')} className='outline-none p-2 rounded-md bg-[#f6f4f4]' type="email" id="email" name="email" placeholder='Enter your email' required />
+                        <input {...register('email', { 
+                            required: "Email is required",
+                            pattern: {
+                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                message: "Invalid email address"
+                            }
+                        })} className='outline-none p-2 rounded-md bg-[#f6f4f4]' type="email" id="email" name="email" placeholder='Enter your email' />
                     </div>
                     <div className='flex flex-col mb-4'>
                         <label className='mb-2 font-medium text-[#565658]' htmlFor="message">Message</label>
-                        <textarea {...register('message')} className='outline-none p-2 rounded-md bg-[#f6f4f4]' id="message" rows="4" name="message" placeholder='Type your message' required></textarea>
+                        <textarea {...register('message', { required: "Message is required" })} className='outline-none p-2 rounded-md bg-[#f6f4f4]' id="message" rows="4" name="message" placeholder='Type your message'></textarea>
                     </div>
                     <button type="submit" className='flex gap-5 mt-5 md:mt-10 px-2 py-2 w-fit rounded-full bg-black text-white font-semibold cursor-pointer hover:scale-102'>
                         <div className='h-9 w-9 rounded-full flex justify-center items-center bg-white'><FaArrowRightLong size={20} color='black' /></div>
