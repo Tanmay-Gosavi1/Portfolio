@@ -16,8 +16,10 @@ const Form = () => {
             console.log('Submitting form data:', data);
             const { name , email , message } = data;
             
+            const loadingToast = toast.loading("Sending message...");
             // Check if all fields are filled
             if (!name || !email || !message) {
+                toast.dismiss(loadingToast);
                 toast.error("Please fill in all fields");
                 return;
             }
@@ -31,8 +33,10 @@ const Form = () => {
             const res = await axios.post(API_URL, { name, email, message }, {
                 headers: {
                     'Content-Type': 'application/json'
-                }
+                },
+                timeout: 6000 // 10 seconds timeout
             });
+            toast.dismiss(loadingToast);
             console.log('Response:', res);
             
             if(res.status === 200 || res.status === 201){
@@ -43,8 +47,13 @@ const Form = () => {
             }
             
         } catch (error) {
+
+            toast.dismiss();
+
             console.error("Error sending message:", error);
-            if (error.response) {
+            if (error.code === 'ECONNABORTED') {
+                toast.error("Server is taking too long to respond. Please try again later.");
+            } else if (error.response) {
                 // Server responded with error
                 console.error('Server error:', error.response.data);
                 const errorMessage = error.response.data?.message || 'Server error occurred';
@@ -106,12 +115,11 @@ const Form = () => {
                 <form onSubmit={handleSubmit(submitEvent)}>
                     <div className='flex flex-col mb-4'>
                         <label className='mb-2 font-medium text-[#565658]' htmlFor="name">Name</label>
-                        <input {...register("name", { required: "Name is required" })} className='outline-none p-2 rounded-md bg-[#f6f4f4]' type="text" id="name" name="name" placeholder='Enter your name' />
+                        <input {...register("name")} className='outline-none p-2 rounded-md bg-[#f6f4f4]' type="text" id="name" name="name" placeholder='Enter your name' required/>
                     </div>
                     <div className='flex flex-col mb-4'>
                         <label className='mb-2 font-medium text-[#565658]' htmlFor="email">Email</label>
                         <input {...register('email', { 
-                            required: "Email is required",
                             pattern: {
                                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                                 message: "Invalid email address"
@@ -120,7 +128,7 @@ const Form = () => {
                     </div>
                     <div className='flex flex-col mb-4'>
                         <label className='mb-2 font-medium text-[#565658]' htmlFor="message">Message</label>
-                        <textarea {...register('message', { required: "Message is required" })} className='outline-none p-2 rounded-md bg-[#f6f4f4]' id="message" rows="4" name="message" placeholder='Type your message'></textarea>
+                        <textarea {...register('message')} className='outline-none p-2 rounded-md bg-[#f6f4f4]' id="message" rows="4" name="message" placeholder='Type your message' required></textarea>
                     </div>
                     <button type="submit" className='flex gap-5 mt-5 md:mt-10 px-2 py-2 w-fit rounded-full bg-black text-white font-semibold cursor-pointer hover:scale-102'>
                         <div className='h-9 w-9 rounded-full flex justify-center items-center bg-white'><FaArrowRightLong size={20} color='black' /></div>
