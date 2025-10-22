@@ -20,16 +20,24 @@ const contactUs =async(req, res) => {
         }
         
         console.log('Saving contact to database...');
-        const newMsg = new Contact({ name , email , message });
-        await newMsg.save();
-        console.log('Contact saved successfully');
-        
-        console.log('Sending emails...');
-        await contactUsMail({name , email , message});
-        await ThankYouMail({name , email , message});
-        console.log('Emails sent successfully');
+        await Contact.create({ name , email , message });
 
-        return res.status(200).json({ success : true , message : 'Contact form submitted successfully' });
+        res.status(200).json({ 
+            success : true , 
+            message : 'Contact form submitted successfully' 
+        });
+        
+        setImmediate(() => {
+            const emailStart = Date.now();
+            Promise.all([
+                contactUsMail({name , email , message}),
+                ThankYouMail({name , email , message})
+            ]).then(() => {
+                console.log(`📧 Emails sent in ${Date.now() - emailStart}ms`);
+            }).catch((error) => {
+                console.error('❌ Email error:', error.message);
+            });
+        });
 
     } catch (error) {
         console.error('Contact form error:', error);

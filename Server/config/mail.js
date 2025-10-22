@@ -19,10 +19,10 @@ export const contactUsMail = async(data)=>{
                 </ul>
             `
         })
-        // console.log(response)
+        console.log('✅ Owner notification email sent');
     
     } catch (error) {
-        console.log(error.message)
+        console.error('❌ Owner email failed:', error.message);
     }
 }
 
@@ -45,9 +45,9 @@ export const ThankYouMail = async(data)=>{
                 </ul>
             `
         })
-        // console.log(response)
+        console.log('✅ Thank you email sent to user');
 
     } catch (error) {
-        console.log(error.message)
+        console.error('❌ Thank you email failed:', error.message);
     }
 }
