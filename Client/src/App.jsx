@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home.jsx'
 import Navbar from './components/Navbar.jsx'
 import Form from './pages/Form.jsx'
-
+import PreLoader from './pages/PreLoader.jsx'
 
 const App = () => {
+  const [ready , setReady] = useState(false);
+
+  if(!ready) return <PreLoader onFinish={()=>setReady(true)} />
   return (
-    <div className='selection:text-white selection:bg-black'>
+    ready && <div className='selection:text-white selection:bg-black'>
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />

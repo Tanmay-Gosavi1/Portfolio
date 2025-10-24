@@ -25,16 +25,14 @@ const Form = () => {
             }
             
             // For development, use localhost. For production, use your backend URL
-            const API_URL = window.location.hostname === 'localhost' 
-                ? 'http://localhost:5000/api/contact'
-                : 'https://portfolio-backend-lvoz.onrender.com/api/contact';
+            const API_URL = 'https://portfolio-backend-lvoz.onrender.com/api/contact';
                 
             console.log('Using API URL:', API_URL);
             const res = await axios.post(API_URL, { name, email, message }, {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                timeout: 6000 // 10 seconds timeout
+                timeout: 30000 // for cold start
             });
             toast.dismiss(loadingToast);
             console.log('Response:', res);

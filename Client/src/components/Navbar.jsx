@@ -31,8 +31,8 @@ const Navbar = () => {
         {/* Links */}
         <div className='hidden sm:flex justify-center items-center gap-2 sm:gap-6 scroll-smooth font-base '>
             <Link to={'/'} className='outline-none hover:scale-105 hover:font-medium hover:cursor-pointer transition-all delay-50' onClick={()=>scrollToSection('home')}>Home</Link>
-            <button className='outline-none hover:scale-105 hover:font-medium hover:cursor-pointer transition-all delay-50' onClick={()=>scrollToSection('techstack')}>About</button>
             <button className='outline-none hover:scale-105 hover:font-medium hover:cursor-pointer transition-all delay-50' onClick={()=>scrollToSection('projects')}>Projects</button>
+            <button className='outline-none hover:scale-105 hover:font-medium hover:cursor-pointer transition-all delay-50' onClick={()=>scrollToSection('techstack')}>About</button>
         </div>
 
         {/* Resume Button */}

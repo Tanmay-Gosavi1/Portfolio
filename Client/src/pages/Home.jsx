@@ -16,7 +16,7 @@ const Home = () => {
         <div className='flex justify-center sm:justify-between items-center h-100 gap-2 w-full'>
             {/* Left div */}
             <div className='hidden sm:flex flex-col gap-3'>
-                {/* <a className='text-[#64656c] hover:text-[#484848] hover:scale-105 hover:font-medium cursor-pointer transition-all delay-50' href='#' target='_blank'>Instagram</a> */}
+                <a className='text-[#64656c] hover:text-[#484848] hover:scale-105 hover:font-medium cursor-pointer transition-all delay-50' href='https://x.com/tanmay_gosavi1' target='_blank'>Twitter</a>
                 <a className='text-[#64656c] hover:text-[#484848] hover:scale-105 hover:font-medium cursor-pointer transition-all delay-50' href='https://linkedin.com/in/tanmay-gosavi-a42368324' target='_blank'>LinkedIn</a>
                 <a className='text-[#64656c] hover:text-[#484848] hover:scale-105 hover:font-medium cursor-pointer transition-all delay-50' href='https://github.com/Tanmay-Gosavi1' target='_blank'>Github</a>
             </div>

@@ -27,7 +27,8 @@ const contactUs =async(req, res) => {
             message : 'Contact form submitted successfully' 
         });
         
-        setImmediate(() => {
+        
+        // setImmediate(() => {
             const emailStart = Date.now();
             Promise.all([
                 contactUsMail({name , email , message}),
@@ -37,7 +38,7 @@ const contactUs =async(req, res) => {
             }).catch((error) => {
                 console.error('❌ Email error:', error.message);
             });
-        });
+        // });
 
     } catch (error) {
         console.error('Contact form error:', error);
