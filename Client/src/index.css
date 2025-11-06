@@ -1,12 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Outfit:wght@100..900&display=swap');
 @import "tailwindcss";
-
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 *{
     font-family: Outfit;
+    cursor: none;
 }
 body{
     background-color: #fefefe;
+    transition: background-color 0.3s ease;
+}
+
+/* Dark mode styles - Full Black */
+[data-theme="dark"] body {
+    background-color: #000000 !important;
+}
+
+[data-theme="dark"] {
+    color-scheme: dark;
 }
 
 .font-lobster {

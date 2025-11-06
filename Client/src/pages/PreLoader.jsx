@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import {TypeAnimation} from 'react-type-animation';
-import blackBg from '../assets/blackTexturebg.jpg'
+// import blackBg from '../assets/blackTexturebg.jpg'
 
 const PreLoader = ({onFinish}) => {
     const greetings = [
@@ -33,7 +33,7 @@ const PreLoader = ({onFinish}) => {
     }, [onFinish])
 
   return (
-    <div style={{backgroundImage: `url(${blackBg})`, backgroundSize: 'cover', backgroundPosition: 'center'}} className='px-5 sm:px-14 md:px-20 min-h-screen min-w-screen text-white flex items-center justify-center'>
+    <div style={{ backgroundSize: 'cover', backgroundPosition: 'center'}} className='px-5 sm:px-14 md:px-20 min-h-screen min-w-screen text-white flex items-center justify-center bg-black'>
       <h1 className='text-5xl md:text-8xl font-bold text-center'>
         {greetings[greetIndex]}
       </h1>

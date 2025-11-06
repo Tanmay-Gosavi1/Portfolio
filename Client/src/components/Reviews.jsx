@@ -27,7 +27,7 @@ const Reviews = () => {
                 ];
   return (
     <div className='w-full mb-8'>
-        <div className='text-4xl sm:text-5xl md:text-6xl font-bold text-center mb-10'>
+        <div className='text-4xl sm:text-5xl md:text-6xl font-bold text-center mb-10 text-black dark:text-white'>
             What My Client Say
         </div>
         {/* Reviews */}
@@ -43,15 +43,15 @@ const Reviews = () => {
 
 const Review = ({founder_name , company_name , review ,isHidden , avatar }) => {
     return (
-        <div className={`border-1 border-[#d3d2d2] w-69 p-4 rounded-lg shadow-md/20 ${isHidden  ? 'hidden sm:block mt-5' : ''} hover:translate-y-[-5px] transition-all delay-150`}>
+        <div className={`border-1 border-[#d3d2d2]/30 dark:border-white/20 w-69 p-4 rounded-lg shadow-md/20 bg-white dark:bg-black ${isHidden  ? 'hidden sm:block mt-5' : ''} hover:translate-y-[-5px] transition-all delay-150`}>
             {/* Quote div */}
             <div className='w-full '>
-                <RiDoubleQuotesL size={34} color='#8a8a94' />
+                <RiDoubleQuotesL size={34} color='#8a8a94' className='dark:text-gray-400' />
             </div>
 
             {/* Experience */}
             <div className='w-full py-2'>
-                <p className='text-[#4d4e54] tracking-tight text-sm md:text-base '>{review}</p>
+                <p className='text-[#4d4e54] dark:text-gray-300 tracking-tight text-sm md:text-base '>{review}</p>
             </div>
 
             {/* Name , Role , Company */}
@@ -60,8 +60,8 @@ const Review = ({founder_name , company_name , review ,isHidden , avatar }) => {
                     <img className='w-full h-full object-cover rounded-full' src={avatar} alt="" />
                 </div>
                 <div className='w-fit flex flex-col justify-center'>
-                    <h1 className='text-base font-medium'>{founder_name}</h1>
-                    <p className='text-sm'>{company_name}</p>
+                    <h1 className='text-base font-medium text-black dark:text-white'>{founder_name}</h1>
+                    <p className='text-sm text-gray-600 dark:text-gray-400'>{company_name}</p>
                 </div>
             </div>
         </div>

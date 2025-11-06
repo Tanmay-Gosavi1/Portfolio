@@ -6,7 +6,7 @@ const Techstack = () => {
   return (
     <div id='techstack' className='w-full md:w-[80%] overflow-hidden relative max-md:py-6 md:pt-16 md:pb-8'>
         <div className='mb-8 sm:mb-10'>
-            <h1 className='text-4xl md:text-5xl lg:text-6xl text-center font-bold'>My Tech Stack</h1>
+            <h1 className='text-4xl md:text-5xl lg:text-6xl text-center font-bold text-black dark:text-white'>My Tech Stack</h1>
         </div>
         {/* All logos */}
         <div className='relative'>
@@ -28,10 +28,10 @@ const Techstack = () => {
             </motion.div>
             
             {/* Left fade overlay */}
-            <div className='absolute top-0 left-0 w-8 sm:w-12 md:w-16 lg:w-20 h-full bg-gradient-to-r from-[#fefefe] to-transparent pointer-events-none z-10'></div>
+            <div className='absolute top-0 left-0 w-8 sm:w-12 md:w-16 lg:w-20 h-full bg-gradient-to-r from-[#fefefe] dark:from-black to-transparent pointer-events-none z-10'></div>
             
             {/* Right fade overlay */}
-            <div className='absolute top-0 right-0 w-8 sm:w-12 md:w-16 lg:w-20 h-full bg-gradient-to-l from-[#fefefe] to-transparent pointer-events-none z-10'></div>
+            <div className='absolute top-0 right-0 w-8 sm:w-12 md:w-16 lg:w-20 h-full bg-gradient-to-l from-[#fefefe] dark:from-black to-transparent pointer-events-none z-10'></div>
         </div>
     </div>
   )
