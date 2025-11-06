@@ -36,7 +36,7 @@ const Footer = () => {
                 <h1 className='text-4xl sm:text-5xl md:text-6xl font-light text-center font-lobster text-[#8a8a94]'>remarkable ?</h1>
             </div>
             <div className='shadow-black rounded-full shadow-xl/20'>
-                <Link to={'/form'} className='w-fit transition-colors delay-50 whitespace-nowrap flex justify-center items-center hover:cursor-pointer gap-1.5 px-5 md:px-10 py-3 text-[#fefefe] bg-gradient-to-tl from-black/70 via-black/90 to-black hover:bg-gradient-to-tl hover:from-white/70 hover:via-white/90 hover:to-white hover:text-black/90 font-semibold rounded-full border-2 border-white/20 hover:border-black hover:scale-105'>Let's Talk<span className='font-extrabold'><MdArrowOutward size={20}  /></span></Link>
+                <Link to={'/form'} className='w-fit transition-all delay-100 whitespace-nowrap flex justify-center items-center hover:cursor-pointer gap-1.5 px-5 md:px-10 py-3 text-[#fefefe] bg-gradient-to-tl from-black/70 via-black/90 to-black hover:bg-gradient-to-tl hover:from-white/70 hover:via-white/90 hover:to-white hover:text-black/90 font-semibold rounded-full border-2 border-white/20 hover:border-black hover:scale-105'>Let's Talk<span className='font-extrabold'><MdArrowOutward size={20}  /></span></Link>
             </div>
         </div>
 

@@ -43,7 +43,7 @@ const Reviews = () => {
 
 const Review = ({founder_name , company_name , review ,isHidden , avatar }) => {
     return (
-        <div className={`border-1 border-[#d3d2d2] w-69 p-4 rounded-lg shadow-md/20 ${isHidden  ? 'hidden sm:block mt-5' : ''}`}>
+        <div className={`border-1 border-[#d3d2d2] w-69 p-4 rounded-lg shadow-md/20 ${isHidden  ? 'hidden sm:block mt-5' : ''} hover:translate-y-[-5px] transition-all delay-150`}>
             {/* Quote div */}
             <div className='w-full '>
                 <RiDoubleQuotesL size={34} color='#8a8a94' />
