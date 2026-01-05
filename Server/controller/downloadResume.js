@@ -8,7 +8,7 @@ export const DownloadResume = async (req, res) => {
     try {
         const __filename = fileURLToPath(import.meta.url);
         const __dirname = path.dirname(__filename);
-        const filePath = path.join(__dirname, '../uploads/comingsoon.pdf');
+        const filePath = path.join(__dirname, '../uploads/TanmayResume.pdf');
         
         // Check if file exists
         if (!fs.existsSync(filePath)) {
