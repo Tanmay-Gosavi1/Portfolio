@@ -1,10 +1,31 @@
-import React from 'react'
+import React, { useRef } from 'react';
 import { MdArrowOutward } from "react-icons/md";
-import slackImg from '../assets/SlackImg.png'
-import { Link, redirect } from 'react-router-dom';   
+import { Link } from 'react-router-dom';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import Prepmate from '../assets/Prepmate.png';
+import RoasterAI from '../assets/RoasterAI.png';
 
-const Projects = () => {
-    const pro = [
+// 1. DUMMY DATA (Added more items to demonstrate the scroll effect)
+// Replace 'slackImg' with your actual imports
+import slackImg from '../assets/SlackImg.png'; 
+
+const projectsData = [
+    {
+            projectName : "Prepmate - AI Study Assistant",
+            projectDescription : "Prepmate is an AI-powered study assistant designed to help students enhance their learning experience by providing personalized study plans, resources.",
+            projectTech : ["ReactJs", "NodeJs" , "Express" , "MongoDB" , "Gemini API" , "Cloudinary" , "TailwindCss" ],
+            liveLink : 'https://prepmate-study-buddy.onrender.com/',
+            githubLink : 'https://github.com/Tanmay-Gosavi1/AI-powered-learning-assistant',
+            projectImg : Prepmate
+        },
+        {
+            projectName : "RoasterAI",
+            projectDescription : "Give funny and friendly roasts replies to your texts.",
+            projectTech : ["ReactJs" , "NodeJs" , "Express" , "MongoDB" , "Gemini API" ,"TailwindCss" ],
+            liveLink : 'https://roastbot-client.onrender.com/',
+            githubLink : 'https://github.com/Tanmay-Gosavi1/RoastBot',
+            projectImg : RoasterAI
+        },
         {
             projectName : "Slack URL Shortner",
             projectDescription : "The Slack URL Shortner is a tool designed to simplify the sharing of links within Slack channels by providing shortened URLs.",
@@ -13,64 +34,106 @@ const Projects = () => {
             githubLink : 'https://github.com/Tanmay-Gosavi1/URL_Shortner',
             projectImg : slackImg
         }
-    ]
-  return (
-    <div id='projects' className='w-full flex flex-col pt-8 md:pt-15 selection:text-white selection:bg-black dark:selection:text-black dark:selection:bg-white'>
-        <h1 className='text-4xl sm:text-5xl md:text-6xl font-semibold mb-3 md:mb-0 lg:mb-8 text-black dark:text-white'>Explore My <span className='font-lobster text-[#8a8a94] dark:text-gray-400 font-light'>Projects</span></h1>
-        {/* Projects*/}
-        <div className='w-full flex flex-col '>
-            {/* First */}
-            {
-                pro.map((p, idx)=>(
-                    <div key={idx} className='w-full flex py-5 md:py-15 flex-col lg:flex-row'>
-                        {/* For lg and below*/}
-                        <div className='flex flex-col lg:hidden items-center'>
-                            {/* Left */}
-                            <div className='w-full sm:w-[85%] md:w-[70%] relative group cursor-pointer '>
-                                <img className='h-full w-full object-cover rounded-xl' src={p.projectImg} alt="" />
-                            </div>
-                            {/* Right */}
-                            <div className='w-full flex flex-col md:pr-10 pt-5'>
-                                <h1 className='text-5xl md:text-7xl font-light text-[#8b8a8f] dark:text-gray-500'>{`0${idx + 1}.`}</h1>
-                                <h1 className='text-4xl md:text-5xl font-semibold mt-4 mb-4 text-black dark:text-white'>{p.projectName}</h1>
-                                <h3 className='text-lg font-medium text-[#7a7a7a] dark:text-gray-400'>{p.projectDescription}</h3>
-                                <h3 className='text-lg font-medium text-[#7a7a7a] dark:text-gray-400'>{p.projectTech[0]}</h3>
-                                <div className='flex gap-2 my-4'>
-                                    <Link to={p.liveLink} target='_blank' className='flex whitespace-nowrap justify-center items-center gap-1.5 cursor-pointer px-4 py-2.5 rounded-full border-1 border-black dark:border-gray-600 w-fit hover:scale-105 transition-all delay-50 hover:text-[#fefefe] hover:bg-black/90 dark:hover:bg-white dark:hover:text-black hover:border-white dark:hover:border-gray-300 text-black dark:text-white'>View Project <MdArrowOutward /></Link>
-                                    <Link to={p.githubLink} target='_blank' className='flex whitespace-nowrap justify-center items-center gap-1.5 cursor-pointer px-4 py-2.5 rounded-full border-1 border-black dark:border-gray-600 w-fit hover:scale-105 transition-all delay-50 bg-black/90 dark:bg-white text-white dark:text-black hover:bg-[#fefefe] dark:hover:bg-gray-800 hover:text-black/90 dark:hover:text-white hover:border-black dark:hover:border-gray-300'>Github repo <MdArrowOutward /></Link>
-                                </div>
-                            </div>
-                        </div>
+];
 
+const Projects = () => {
+    // 2. FRAMER MOTION SETUP
+    const targetRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: targetRef,
+    });
 
-                        {/* For lg and above */}
-                        <div className='hidden lg:flex w-full flex-row'> 
-                            {/* Left */}
-                            <div className='w-[50%] flex flex-col md:pr-10 pt-5'>
-                                <h1 className='text-7xl font-light text-[#8b8a8f] dark:text-gray-500'>{`0${idx + 1}.`}</h1>
-                                <h1 className='text-5xl font-semibold mt-4 mb-7 text-black dark:text-white'>{p.projectName}</h1>
-                                <h3 className='text-lg font-medium text-[#7a7a7a] dark:text-gray-400'>{p.projectDescription}</h3>
-                                <h3 className='text-lg font-medium text-black dark:text-white pt-5 pb-2'>TechStack : {
-                                        p.projectTech.map((tech , idx)=>(
-                                            <span key={idx} className='text-[#7a7a7a] dark:text-white/70'>{tech}{idx < p.projectTech.length - 1 ? ', ' : ''}</span>
-                                        ))
-                                    }</h3>
-                                <div className='flex gap-5 mt-5'>
-                                    <Link to={p.liveLink} target='_blank' className='flex justify-center items-center gap-1.5 cursor-pointer px-4 py-2.5 rounded-full border-1 border-black dark:border-gray-600 w-fit mb-10 hover:scale-105 transition-all delay-50 text-black dark:text-white hover:text-[#fefefe] hover:bg-black/90 dark:hover:bg-white dark:hover:text-black hover:border-white dark:hover:border-gray-300'>View Project <MdArrowOutward /></Link>
-                                    <Link to={p.githubLink} target='_blank' className='flex justify-center items-center gap-1.5 cursor-pointer px-4 py-2.5 rounded-full border-1 border-black dark:border-gray-600 w-fit mb-10 hover:scale-105 transition-all delay-50 bg-black/90 dark:bg-white text-white dark:text-black hover:bg-[#fefefe] dark:hover:bg-gray-800 hover:text-black/90 dark:hover:text-white hover:border-black dark:hover:border-gray-300'>Github repo <MdArrowOutward /></Link>
-                                </div>
-                            </div>
-                            {/* Right */}
-                            <div className='w-[50%] relative group cursor-pointer transition-all duration-300'>
-                                <img onClick={()=>redirect(p.liveLink)} className='h-full w-full object-contain rounded-xl' src={p.projectImg} alt="" />
-                            </div>
-                        </div>
-                    </div>
-                ))
-            }
+    // Transform scroll progress (0 to 1) into horizontal movement (1% to -95%)
+    // The -95% depends on how many items you have. 
+    const x = useTransform(scrollYProgress, [0, 1], ["1%", "-75%"]);
+
+    return (
+        // The outer container determines the "scroll length". 
+        // 300vh means you have to scroll 3 screens worth of height to finish the animation.
+        <div ref={targetRef} id='projects' className='relative h-[300vh] w-full bg-white dark:bg-black'>
+            
+            {/* 3. STICKY CONTAINER */}
+            <div className='sticky top-5 flex h-screen items-center overflow-hidden'>
+                
+                {/* Title (Stays absolute or moves with flow - kept distinct here) */}
+                <div className='absolute top-10 left-10 z-10'>
+                     <h1 className='text-4xl sm:text-5xl md:text-6xl font-semibold text-black dark:text-white'>
+                        Explore My <span className='font-lobster text-[#8a8a94] dark:text-gray-400 font-light'>Projects</span>
+                    </h1>
+                </div>
+
+                {/* 4. MOTION DIV - This moves horizontally */}
+                <motion.div style={{ x }} className='flex gap-10 pl-10 pt-5 sm:pt-9 md:pl-20'>
+                    {projectsData.map((project, idx) => (
+                        <ProjectCard key={idx} p={project} idx={idx} />
+                    ))}
+                </motion.div>
+            </div>
+            
         </div>
-    </div>
-  )
-}
+    );
+};
 
-export default Projects 
+// 6. SUB-COMPONENT FOR CLEANER CODE (The Card Design)
+const ProjectCard = ({ p, idx }) => {
+    return (
+        <div className='relative h-[70vh] sm:h-[80vh] w-[85vw] md:w-[60vw] lg:w-[45vw] flex-shrink-0 rounded-3xl bg-gray-100 dark:bg-gray-950/80 overflow-hidden border border-gray-200 dark:border-gray-800 p-3.5 md:p-10 flex flex-col justify-between'>
+            
+            {/* Content Top */}
+            <div>
+                <div className='flex justify-between items-start mb-6'>
+                    <h1 className='text-6xl font-light text-gray-700/70 dark:text-gray-700 select-none pr-2'>{`0${idx + 1}`}</h1>
+                    <div className='flex gap-2 flex-wrap'>
+                        {/* Tags */}
+                        {p.projectTech.slice(0, 5).map((t, i) => (
+                            <span key={i} className='text-xs font-mono px-2 py-1 rounded border border-gray-300 dark:border-gray-700 text-gray-500'>
+                                {t}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+
+                <h1 className='text-3xl md:text-4xl font-bold mb-4 text-black dark:text-white leading-tight'>
+                    {p.projectName}
+                </h1>
+                <p className='text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-md'>
+                    {p.projectDescription}
+                </p>
+            </div>
+
+            {/* Content Bottom (Image + Buttons) */}
+            <div className='mt-8'>
+                <div className='flex gap-4 mb-6'>
+                     <LinkButton href={p.liveLink} text="View Project" primary={false} />
+                     <LinkButton href={p.githubLink} text="Github Repo" primary={true} />
+                </div>
+                
+                {/* Image Container with hover effect */}
+                <div className='w-full h-48 md:h-64 rounded-xl overflow-hidden group'>
+                    <img 
+                        src={p.projectImg} 
+                        alt={p.projectName} 
+                        className='w-full h-full object-contain transition-transform duration-500 group-hover:scale-105' 
+                    />
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// Helper Button Component
+const LinkButton = ({ href, text, primary }) => (
+    <Link 
+        to={href} 
+        target='_blank' 
+        className={`flex items-center gap-2 px-5 py-3 rounded-full border whitespace-nowrap transition-all duration-300 text-sm font-medium
+        ${primary 
+            ? 'bg-black text-white border-black hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white dark:hover:border-white' 
+            : 'bg-transparent text-black border-black hover:bg-black hover:text-white dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black'
+        }`}
+    >
+        {text} <MdArrowOutward />
+    </Link>
+);
+
+export default Projects;
