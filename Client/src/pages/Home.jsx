@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { MdArrowOutward } from "react-icons/md";
 import Projects from './Projects';
@@ -8,21 +7,9 @@ import Reviews from '../components/Reviews';
 import Footer from '../components/Footer.jsx'
 import header_img from '../assets/bestAvatar.jpg'
 import Highlight from '../components/Highlight.jsx';
-import axios from 'axios';
 
 const Home = ({textEnter , textLeave }) => {
-  // Ping backend to wake it up on component mount
-  useEffect(()=>{
-    const startBackend = async()=>{
-      const BackendUrl = "https://portfolio-backend-lvoz.onrender.com/"
-      try {
-          await axios.get(BackendUrl);
-      } catch (error) {
-          console.error("Error starting backend:", error);
-      }
-    }
-    startBackend();
-  },[]); 
+
   return (
     <div id='home' className='min-h-screen w-full px-5 sm:px-14 md:px-20 pb-5 flex flex-col items-center pt-19 bg-[#fefefe] dark:bg-black'>
         {/* Header Div */}

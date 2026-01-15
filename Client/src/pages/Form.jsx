@@ -26,7 +26,7 @@ const Form = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                timeout: 30000 // for cold start
+                timeout: 15000 // for cold start
             });
             toast.dismiss(loadingToast);
             console.log('Response:', res);
