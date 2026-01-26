@@ -19,7 +19,6 @@ const ChatInterface = ({isOpen, setIsOpen, toggleChat}) => {
   { text: "Tell me about your best project" },
   { text: "What tech stack do you work with?" },
   { text: "What kind of roles are you looking for?" },
-  { text: "What problems do you enjoy solving?" },
   { text: "What makes you different from other developers?" },
   { text: "What backend work have you done?" },
   { text: "How can I contact you?" }
@@ -89,36 +88,36 @@ const ChatInterface = ({isOpen, setIsOpen, toggleChat}) => {
     transition-all duration-300 ease-out
   `}
 > 
-  <div className="relative flex flex-col h-full rounded-2xl border border-black/10 bg-white/90 backdrop-blur-xl shadow-2xl">
+  <div className="relative flex flex-col h-full rounded-2xl border border-black/10 dark:border-white/10 bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl shadow-2xl">
     
     {/* Header */}
-    <div className="flex items-center justify-between px-4 py-3 border-b">
+    <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-gray-700">
       <div className="flex items-center gap-3">
         <div className="relative">
-          <Bot className="w-7 h-7 text-black" />
-          <span className="absolute bottom-0 right-0 w-2 h-2 bg-green-500 rounded-full ring-2 ring-white"></span>
+          <Bot className="w-7 h-7 text-black dark:text-white" />
+          <span className="absolute bottom-0 right-0 w-2 h-2 bg-green-500 rounded-full ring-2 ring-white dark:ring-gray-800"></span>
         </div>
         <div>
-          <h3 className="text-sm font-semibold tracking-wide">
+          <h3 className="text-sm font-semibold tracking-wide text-black dark:text-white">
             Tanmay’s AI
           </h3>
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-gray-500 dark:text-gray-400">
             Ask me anything about my work
           </p>
         </div>
       </div>
       <button
         onClick={toggleChat}
-        className="p-1 rounded-full hover:bg-gray-100 transition"
+        className="p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition"
       >
-        <X className="w-5 h-5" />
+        <X className="w-5 h-5 text-black dark:text-white" />
       </button>
     </div>
 
     {/* Messages */}
     <div className="flex-1 px-4 py-3 overflow-y-auto space-y-3">
       {messages.length === 0 ? (
-        <div className="flex flex-col items-center justify-center text-center text-gray-500 h-full">
+        <div className="flex flex-col items-center justify-center text-center text-gray-500 dark:text-gray-400 h-full">
           <p className="text-sm">👋 Hi, I’m Tanmay’s personal AI</p>
           <p className="text-xs mt-1">Try one of these:</p>
 
@@ -127,7 +126,7 @@ const ChatInterface = ({isOpen, setIsOpen, toggleChat}) => {
               <button
                 key={i}
                 onClick={() => setInput(q.text)}
-                className="px-3 py-1.5 text-xs rounded-full bg-black text-white hover:bg-gray-800 transition"
+                className="px-3 py-1.5 text-xs rounded-full bg-black dark:bg-gray-900 text-white hover:bg-gray-800 dark:hover:bg-gray-700 transition"
               >
                 {q.text}
               </button>
@@ -144,8 +143,8 @@ const ChatInterface = ({isOpen, setIsOpen, toggleChat}) => {
               className={`
                 max-w-[75%] px-3 py-2 rounded-xl text-sm leading-relaxed
                 ${msg.sender === "user"
-                  ? "bg-black text-white rounded-br-none"
-                  : "bg-gray-100 text-black rounded-bl-none"}
+                  ? "bg-black dark:bg-gray-900 text-white rounded-br-none"
+                  : "bg-gray-100 dark:bg-gray-700 text-black dark:text-white rounded-bl-none"}
                 animate-fade-in
               `}
             >
@@ -156,7 +155,7 @@ const ChatInterface = ({isOpen, setIsOpen, toggleChat}) => {
       )}
       {loading && (
         <div className="flex justify-start">
-            <div className="bg-gray-100 text-black px-3 py-2 rounded-xl rounded-bl-none text-sm flex gap-1">
+            <div className="bg-gray-100 dark:bg-gray-700 text-black dark:text-white px-3 py-2 rounded-xl rounded-bl-none text-sm flex gap-1">
             <span className="animate-bounce">.</span>
             <span className="animate-bounce delay-150">.</span>
             <span className="animate-bounce delay-300">.</span>
@@ -167,15 +166,15 @@ const ChatInterface = ({isOpen, setIsOpen, toggleChat}) => {
     </div>
 
     {/* Input */}
-    <div className="px-3 py-2 border-t">
-      <div className="flex items-center gap-2 bg-gray-100 rounded-full px-3 py-1.5">
+    <div className="px-3 py-2 border-t border-gray-200 dark:border-gray-700">
+      <div className="flex items-center gap-2 bg-gray-200 dark:bg-gray-700 rounded-full px-3 py-1.5">
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
           placeholder="Ask about projects, skills, experience…"
-          className="flex-1 bg-transparent outline-none text-sm px-1"
+          className="flex-1 bg-transparent outline-none text-sm px-1 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
         />
         <button
           onClick={sendMessage}
@@ -183,7 +182,7 @@ const ChatInterface = ({isOpen, setIsOpen, toggleChat}) => {
           className={`p-2 rounded-full transition ${
                 loading
                 ? "bg-gray-400 cursor-not-allowed"
-                : "bg-black text-white hover:bg-gray-800"
+                : "bg-black dark:bg-gray-900 text-white hover:bg-gray-800 dark:hover:bg-gray-700"
             }`}
         >
           <Send className="w-4 h-4" />

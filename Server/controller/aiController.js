@@ -82,6 +82,7 @@ export const getAIResponse = async (req, res) => {
                         4. Do not answer personal, political, or irrelevant questions.
                         5. Encourage collaboration, hiring, or contact when appropriate.
                         6. Keep responses short unless the user asks for details.
+                        7. Answer open-ended questions by relating them to my skills and experience.
                         Answer the following question in a concise , to the point and professional manner.`;
 
         const response = await ai.models.generateContent({
