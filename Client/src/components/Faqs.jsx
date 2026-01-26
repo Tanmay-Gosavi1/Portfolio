@@ -39,7 +39,7 @@ const Faqs = () => {
 const [faq, setFaq] = useState(faqData);
 
   return (
-    <div className='w-full flex flex-col md:flex-row py-4 md:py-9'>
+    <div className='w-full flex flex-col md:flex-row py-4 md:py-9 px-5 sm:px-14 md:px-20 mb-4'>
         <div className='w-full md:w-[50%] pb-5'>
             <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold max_md:text-center text-black dark:text-white'>Frequently Asked <span className='font-lobster text-[#8a8a94] dark:text-gray-400 font-light'>Questions</span></h1>
         </div>
@@ -48,8 +48,8 @@ const [faq, setFaq] = useState(faqData);
                 faq.map((ele , idx)=>(
                     <div key={idx} onClick={()=>setFaq(faq.map((item , i)=> i==idx ? {...item , open: !item.open} : (item.open ? {...item , open: !item.open} : item)))} className='relative cursor-pointer flex flex-col p-2 border-1 border-[#e4e1e1] dark:border-white/20 rounded-lg bg-white dark:bg-black'>
                         <h1 className='text-base md:text-lg font-medium pr-6 text-black dark:text-white'>{ele.question}</h1>
-                        <div className='absolute top-3 right-3 cursor-pointer text-black dark:text-white'>{ele.open ? <IoIosArrowUp size={20}/> : <IoIosArrowDown size={20}/>}</div>
-                        <p className='text-[#4d4e54] dark:text-gray-300 text-sm md:text-base mt-1.5'>{ele.open ? ele.answer : ""}</p>
+                        <div className='absolute top-3 right-3 cursor-pointer text-black dark:text-white'><IoIosArrowDown size={20} className={`${ele.open ? 'rotate-180' : 'rotate-0'} transition-transform duration-200`}/></div>
+                        <p className={`text-[#4d4e54] dark:text-gray-300 transition-all duration-300 ${ele.open ? 'block' : 'hidden'} text-sm md:text-base mt-1.5`}>{ele.answer}</p>
                     </div>
                 ))
             }

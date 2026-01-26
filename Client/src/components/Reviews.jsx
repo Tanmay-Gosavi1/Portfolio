@@ -13,8 +13,8 @@ const Reviews = () => {
                         "avatar" : avatar1
                     },
                     {
-                        "company_name": "Apex Digital Labs",
-                        "founder_name": "Dr. Sarah Chen (CTO)",
+                        "company_name": "Aurameter",
+                        "founder_name": "Ankit Bhati (Co-Founder)",
                         "review": "A high-impact developer who excels in both front-end and back-end performance. They optimized our MongoDB queries and fine-tuned the React component rendering, resulting in a 40% reduction in page load time for our main application. Highly collaborative .",
                         "avatar" : avatar2
                     },
@@ -43,7 +43,7 @@ const Reviews = () => {
 
 const Review = ({founder_name , company_name , review ,isHidden , avatar }) => {
     return (
-        <div className={`border-1 border-[#d3d2d2]/30 dark:border-white/20 w-69 p-4 rounded-lg shadow-md/20 bg-white dark:bg-black ${isHidden  ? 'hidden sm:block mt-5' : ''} hover:translate-y-[-5px] transition-all delay-150`}>
+        <div className={`border-1 border-[#d3d2d2]/30 dark:border-white/20 w-69 p-4 rounded-lg shadow-md/20 bg-white dark:bg-black ${isHidden  ? 'hidden sm:block mt-5' : ''} hover:translate-y-[-5px] transition-all delay-50 duration-300 hover:shadow-xl/20 hover:scale-105`}>
             {/* Quote div */}
             <div className='w-full '>
                 <RiDoubleQuotesL size={34} color='#8a8a94' className='dark:text-gray-400' />

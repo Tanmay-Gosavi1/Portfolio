@@ -73,7 +73,7 @@ const App = () => {
         <Route path='/' element={<Home textEnter={textEnter} textLeave={textLeave}/>} />
         <Route path='/form' element={<Form />} />
       </Routes>
-      <motion.div className={`bg-black h-6 w-6 rounded-full fixed top-0 left-0 pointer-events-none z-100 `} animate={mouseVariant} variants={variants}></motion.div>
+      <motion.div className={`bg-black h-6 w-6 rounded-full fixed top-0 left-0 pointer-events-none z-150 `} animate={mouseVariant} variants={variants}></motion.div>
     </div>
   )
 }
