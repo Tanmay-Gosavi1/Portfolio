@@ -3,7 +3,7 @@ import { MdArrowOutward } from "react-icons/md";
 import Projects from './Projects';
 import Techstack from '../components/Techstack';
 import Faqs from '../components/Faqs';
-import Reviews from '../components/Reviews';
+import About from '../components/About';
 import Footer from '../components/Footer.jsx'
 import header_img from '../assets/bestAvatar.jpg'
 import Highlight from '../components/Highlight.jsx';
@@ -60,7 +60,7 @@ const Home = ({textEnter , textLeave }) => {
       </div>
       <div className='w-full flex flex-col items-center rounded-t-4xl'>
         <Techstack />
-        <Reviews />
+        <About />
       </div>
       <Faqs />
       <Footer />

@@ -8,11 +8,29 @@ import RoasterAI from '../assets/RoasterAI.png';
 // 1. DUMMY DATA (Added more items to demonstrate the scroll effect)
 // Replace 'slackImg' with your actual imports
 import slackImg from '../assets/SlackImg.png'; 
+import Educaso from '../assets/Educaso.png';
+import Rydex from '../assets/Rydex.png';
 
 const projectsData = [
-    {
+        {
+            projectName : "Rydex - Vehicle Booking Platform",
+            projectDescription : "Rydex is a vehicle booking platform that offers users a seamless experience for reserving various types of vehicles. Live chat , real time location tracking and secure payment integration .",
+            projectTech : ["NextJs", "Typescript", "MongoDB", "Zego" , "Socket.io" , "Razorpay", "Authjs" , "Framer" , "Gemini API" , "Cloudinary" ],
+            liveLink : '',
+            githubLink : 'https://github.com/Tanmay-Gosavi1/Rydex',
+            projectImg : Rydex
+        },
+        {
+            projectName : "Educaso - AI-Powered LMS",
+            projectDescription : "Educaso is an AI-powered learning companion designed to provide personalized educational support and resources to students of all ages.",
+            projectTech : ["ReactJs", "NodeJs" , "Express" , "MongoDB" , "Gemini API" , "Cloudinary" , "TailwindCss" ],
+            liveLink : 'https://educaso-client.onrender.com/',
+            githubLink : 'https://github.com/Tanmay-Gosavi1/EdTech_platform',
+            projectImg : Educaso
+        },
+        {
             projectName : "Prepmate - AI Study Assistant",
-            projectDescription : "Prepmate is an AI-powered study assistant designed to help students enhance their learning experience by providing personalized study plans, resources.",
+            projectDescription : "Prepmate is an AI-powered study assistant designed to help students . Upload notes , ask questions , generate quizzes , flashcards and more...",
             projectTech : ["ReactJs", "NodeJs" , "Express" , "MongoDB" , "Gemini API" , "Cloudinary" , "TailwindCss" ],
             liveLink : 'https://prepmate-study-buddy.onrender.com/',
             githubLink : 'https://github.com/Tanmay-Gosavi1/AI-powered-learning-assistant',
