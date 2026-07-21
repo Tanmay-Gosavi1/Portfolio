@@ -1,17 +1,38 @@
-import {GoogleGenAI} from '@google/genai'
+import { GoogleGenAI } from '@google/genai';
 import dotenv from 'dotenv';
+
 dotenv.config();
 
 const ai = new GoogleGenAI({
     apiKey: process.env.GEMINI_API_KEY
-})
+});
 
 export const getAIResponse = async (req, res) => {
     try {
-        const {message} = req.body;
-        if(!message) {
+        const { message, messages } = req.body || {};
+        const normalizedMessages = Array.isArray(messages) ? messages : [];
+
+        const conversationText = normalizedMessages.length > 0
+            ? normalizedMessages
+                .map((entry) => {
+                    if (typeof entry === 'string') return entry;
+                    if (entry && typeof entry === 'object') {
+                        const sender = entry.sender || entry.role || 'user';
+                        const text = entry.text || entry.content || entry.message || '';
+                        return `${sender === 'user' ? 'User' : 'Assistant'}: ${text}`;
+                    }
+                    return '';
+                })
+                .filter(Boolean)
+                .join('\n')
+            : (typeof message === 'string' ? message : '');
+
+        const userMessage = conversationText?.trim();
+
+        if (!userMessage) {
             return res.status(400).json({ success: false, message: 'Message is required' });
         }
+
         const systemContext = `This is the complete and authoritative profile data of Tanmay Gosavi.
                         You MUST use ONLY this information to answer user questions.
                         Do NOT assume, guess, or invent anything beyond this data.
@@ -83,19 +104,34 @@ export const getAIResponse = async (req, res) => {
                         5. Encourage collaboration, hiring, or contact when appropriate.
                         6. Keep responses short unless the user asks for details.
                         7. Answer open-ended questions by relating them to my skills and experience.
-                        Answer the following question in a concise , to the point and professional manner.`;
+                        Answer the following question in a concise, to the point and professional manner.`;
 
         const response = await ai.models.generateContent({
-            model : 'gemini-3-flash-preview',
-            contents: [
-                { role: "system", parts: [{ text: systemContext }] },
-                { role: "user", parts: [{ text: message }] }
-            ]
-        })
+            model: 'gemini-3.5-flash',
+            contents: [{ role: 'user', parts: [{ text: userMessage }] }],
+            config: { systemInstruction: systemContext }
+        });
 
-        res.status(200).json({ success: true, data: response.text || "I don’t have that information yet, but you can contact me directly."});
+        const responseText = typeof response?.text === 'string' && response.text.trim()
+            ? response.text.trim()
+            : response?.candidates?.[0]?.content?.parts
+                ?.map((part) => part?.text || '')
+                .join('')
+                .trim() || '';
+
+        if (!responseText) {
+            return res.status(502).json({
+                success: false,
+                message: 'The AI service returned an empty response. Please try again.'
+            });
+        }
+
+        res.status(200).json({ success: true, data: responseText });
     } catch (error) {
         console.error('Error generating AI response:', error);
-        res.status(500).json({ success: false, message: 'Internal Server Error' });
+        res.status(500).json({
+            success: false,
+            message: error?.message || 'The AI service is unavailable right now. Please try again in a moment.'
+        });
     }
-}
+};
