@@ -8,7 +8,7 @@ import { Sun , Moon } from 'lucide-react'
 const Navbar = ({toggleTheme , isDark}) => {
   const resumeDownload = async () => {
     try {
-      window.open('https://portfolio-backend-lvoz.onrender.com/api/download' , '_blank')
+      window.open('https://portfolio-server-pmyl.onrender.com/api/download' , '_blank')
       toast.success("Thank you for downloading resume!");
       
     } catch (error) {
