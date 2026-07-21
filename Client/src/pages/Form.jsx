@@ -19,7 +19,7 @@ const Form = () => {
             const loadingToast = toast.loading("Sending message...");
             
             // For development, use localhost. For production, use your backend URL
-            const API_URL = 'https://portfolio-backend-lvoz.onrender.com/api/contact';
+            const API_URL = 'https://portfolio-server-pmyl.onrender.com/api/contact';
                 
             console.log('Using API URL:', API_URL);
             const res = await axios.post(API_URL, { name, email, message }, {
